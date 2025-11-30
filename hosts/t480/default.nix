@@ -12,9 +12,8 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # boot.initrd.luks.devices."luks-238c3396-4da1-4067-8aa1-a7bb4023b18a".device = "/dev/disk/by-uuid/238c3396-4da1-4067-8aa1-a7bb4023b18a";
   networking.hostName = "nixos-t480";
-  networking.hostId = "b7b78d22";
+  networking.hostId = "b7b78d22"; #pretty sure this isn't some big secret lol
 
   #!TODO get this working, something to do with it working at build time?
   #networking.hostId = "$(cat /run/secrets/hostId)";
@@ -49,12 +48,6 @@
     pkgs.brgenml1lpr
     pkgs.brgenml1cupswrapper
   ];
-
-  #programs.firefox.enable = true;
-
-  #programs.thunderbird.enable = true;
-
-  #programs.librewolf.enable = true;
 
   environment.systemPackages = with pkgs; [
     firefox

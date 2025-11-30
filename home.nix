@@ -69,9 +69,9 @@
 
   programs.git = {
     enable = true;
-    userName = "dilly";
-    userEmail = "dylanjones6@protonmail.com";
-    extraConfig.init.defaultBranch = "main";
+    settings.user.name = "dilly";
+    settings.user.email = "dylanjones6@protonmail.com";
+    settings.init.defaultBranch = "main";
   };
   
   home.stateVersion = "25.05";

@@ -15,6 +15,41 @@
   networking.hostName = "nixos-t480";
   networking.hostId = "b7b78d22"; #pretty sure this isn't some big secret lol
 
+  # disable network manager
+  networking.networkmanager.enable = false;
+  # enable DeCLaRatIvE wireless networking
+  networking.wireless.enable = true;
+
+  # enable user control with wpa_cli and wpa_gui if needed b/c we can't be 
+  # fucking stateless all the time
+  networking.wireless = {
+    allowAuxiliaryImperativeNetworks = true;
+    userControlled = {
+      enable = true;
+      #group = "network"; #enabling this borks everything but maybe in the future?
+    }; 
+    extraConfig = ''
+      update_config=1
+    '';
+  };
+
+  #networking.wireless.extraConfig = "ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=wheel";
+  networking.wireless.networks = {
+    "Casa Guest" = {
+      #pskRaw = "ext:$(cat /run/secrets/wifi/'Casa Guest')";
+      pskRaw = "ext:G3tConnecteD!";
+      #psk = "$(cat /run/secrets/wifi/'Casa Guest')";
+      authProtocols = [ "WPA-PSK-SHA256" ];
+      #auth = ''
+      #  pairwise=CCMP
+      #'';
+    };
+    "iPhone" = {
+      pskRaw = "ext:reallygoodpassword";
+    };
+  };
+
+
   #!TODO get this working, something to do with it working at build time?
   #networking.hostId = "$(cat /run/secrets/hostId)";
   #networking.hostId = config.sops.secrets."hostId".path;

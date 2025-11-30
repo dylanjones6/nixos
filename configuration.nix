@@ -1,7 +1,7 @@
 { config, lib, pkgs, inputs, ... }:
 {
-  # Enable networking
-  networking.networkmanager.enable = true;
+  # # Enable networking
+  # networking.networkmanager.enable = true;
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -34,7 +34,8 @@
   users.users.dilly = {
     isNormalUser = true;
     description = "dylan";
-    extraGroups = [ "networkmanager" "wheel" ];
+    #extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "wheel" "network" ];
   };
 
   # Allow unfree packages :(

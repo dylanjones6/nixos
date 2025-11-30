@@ -26,8 +26,20 @@
   #   homeVPN = { config = '' config /root/nixos/openvpn/homeVPN.conf ''; };
   # };
 
+  programs.zsh = {
+    enable = true; 
+    enableCompletion = true;
+    autosuggestions.enable = true;
+    syntaxHighlighting.enable = true;
+
+    shellAliases = {
+
+    };
+    histSize = 10000;
+  };
+
   users.users.dilly = {
-    shell = pkgs.nushell;
+    shell = pkgs.zsh;
   };
 
   services.pulseaudio.enable = false;

@@ -1,4 +1,4 @@
-{ config, inputs, lib, pkgs, agenix, ... }:
+{ config, inputs, lib, pkgs, ... }:
 
 {
   imports =
@@ -43,6 +43,12 @@
 
   # Enable CUPS printing service
   services.printing.enable = true;
+
+  services.printing.drivers = [
+    pkgs.brlaser
+    pkgs.brgenml1lpr
+    pkgs.brgenml1cupswrapper
+  ];
 
   #programs.firefox.enable = true;
 

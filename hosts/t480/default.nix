@@ -26,21 +26,40 @@
   #   homeVPN = { config = '' config /root/nixos/openvpn/homeVPN.conf ''; };
   # };
 
-  programs.zsh = {
-    enable = true; 
-    enableCompletion = true;
-    autosuggestions.enable = true;
-    syntaxHighlighting.enable = true;
+  programs.fish.enable = true;
 
-    shellAliases = {
-
-    };
-    histSize = 10000;
+  programs.bash = {
+    interactiveShellInit = ''
+      if [[ $(${pkgs.procps}/bin/ps --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]
+      then
+        shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=""
+        exec ${pkgs.fish}/bin/fish $LOGIN_OPTION
+      fi
+    '';
   };
 
-  users.users.dilly = {
-    shell = pkgs.zsh;
-  };
+
+  # programs.zsh = {
+  #   enable = true; 
+  #   enableCompletion = true;
+  #   autosuggestions.enable = true;
+  #   syntaxHighlighting.enable = true;
+
+  #   shellAliases = {
+
+  #   };
+  #   histSize = 10000;
+  #   ohMyZsh = {
+  #     enable = true;
+  #     plugins = [ "git" ];
+  #   };
+  # };
+
+  # users.defaultUserShell = pkgs.zsh;
+
+  # users.users.dilly = {
+  #   shell = pkgs.zsh;
+  # };
 
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -86,8 +105,6 @@
   #       $env.config.buffer_editor = "nvim"
   #   '';
   # };
-
-  users.defaultUserShell = pkgs.nushell;
 
   # programs.ssh.startAgent = true;
 

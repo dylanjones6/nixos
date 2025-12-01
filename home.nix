@@ -18,19 +18,19 @@
   ];
 
 
-  programs.nushell = {
-    enable = true;
-    shellAliases = {
-      nixup = "sudo nixos-rebuild switch";
-      connect-vpn = "sudo systemctl start openvpn-homeVPN.service";
-      disconnect-vpn = "sudo systemctl stop openvpn-homeVPN.service";
-      zj = "zellij";
-    };
-    extraConfig = ''
-    $env.config.buffer_editor = "nvim"
-    $env.EDITOR = "nvim"
-    '';
-  };
+  # programs.nushell = {
+  #   enable = true;
+  #   shellAliases = {
+  #     nixup = "sudo nixos-rebuild switch";
+  #     connect-vpn = "sudo systemctl start openvpn-homeVPN.service";
+  #     disconnect-vpn = "sudo systemctl stop openvpn-homeVPN.service";
+  #     zj = "zellij";
+  #   };
+  #   extraConfig = ''
+  #   $env.config.buffer_editor = "nvim"
+  #   $env.EDITOR = "nvim"
+  #   '';
+  # };
   
   programs.librewolf = {
     enable = true;

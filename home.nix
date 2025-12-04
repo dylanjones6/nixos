@@ -38,8 +38,15 @@
       ExtensionSettings = {
         #"*".installation_mode = "blocked";
         # uBlockOrigin
-        "uBlock0@raymondhill.net" = {
-          install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
+        # "uBlock0@raymondhill.net" = {
+        #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
+        #   installation_mode = "force_installed";
+        #   private_browsing = true;
+        #   default_area = "navbar";
+        # };
+        # AdNauseam
+        "adnauseam@rednoise.org" = {
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/adnauseam/latest.xpi";
           installation_mode = "force_installed";
           private_browsing = true;
           default_area = "navbar";

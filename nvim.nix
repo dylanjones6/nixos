@@ -36,12 +36,13 @@ in
 
 
       " INDENTING "
-      set smartindent
-      set copyindent
-      set smarttab
-      set autoindent
+      "set smartindent "should be on/off together
+      set autoindent "should be on/off together
+      "set copyindent
+      "set smarttab
       set tabstop=4
-      set softtabstop=2
+      set shiftwidth=4
+      "set softtabstop=2
       set expandtab
 
 
@@ -49,9 +50,10 @@ in
       "set visualbell
       set noerrorbells
       set colorcolumn=80
-      set scrolloff=8
-      set sidescrolloff=5
+      set scrolloff=4
+      set sidescrolloff=2
       set encoding=utf-8
+      set spelllang=en_us
       "set title
       "set spell
 
@@ -76,6 +78,10 @@ in
       set showmode
       set showmatch
       set history=1000
+
+      set nobackup
+      set noswapfile
+
 
       "Enable auto completion menu after pressing TAB.
       set wildmenu

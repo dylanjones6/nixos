@@ -17,9 +17,19 @@
     fd
 	nerd-fonts.comic-shanns-mono
   ];
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "text/html" = "librewolf";
+      "x-scheme-handler/http" = "librewolf";
+      "x-scheme-handler/https" = "librewolf";
+      "x-scheme-handler/about" = "librewolf";
+      "x-scheme-handler/unknown" = "librewolf";
+    };
+  };
   
   programs.librewolf = {
-    enable = true;
+    # enable = true;
     #settings = {
     #};
     policies = {

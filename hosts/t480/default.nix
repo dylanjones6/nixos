@@ -69,7 +69,7 @@
   environment.systemPackages = with pkgs; [
     firefox
     thunderbird
-    #librewolf
+    librewolf
     #nerd-fonts.iosevka
     wofi
     waybar

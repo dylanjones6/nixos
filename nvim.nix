@@ -29,12 +29,10 @@ in
       set number
       set relativenumber
       set cursorline
-      "set cursorcolumn"
-      set tabstop=4
-      set expandtab
+      "set cursorcolumn
 
-     set list
-     set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·
+      set list
+      set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·
 
 
       " INDENTING "
@@ -42,6 +40,9 @@ in
       set copyindent
       set smarttab
       set autoindent
+      set tabstop=4
+      set softtabstop=2
+      set expandtab
 
 
       set nowrap
@@ -58,6 +59,7 @@ in
       " COLORSCHEME "
       colorscheme pixel
       set background=dark
+      set termguicolors
 
 
       " SEARCHING "
@@ -85,6 +87,8 @@ in
       if has('mouse')
           set mouse=a
       endif
+
+      set clipboard+=unnamedplus
 
       " remember last cursor position
       autocmd BufReadPost *

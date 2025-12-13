@@ -1,0 +1,10 @@
+
+keys:
+  - &dilly-t480 age16xma9cxlnmhrrgp52mnw6kh87zvyg76mdlnea2vzzfu0cxecsfcswwsr28
+  - &mbp        age1h3evg3pvzwdqxyhsxudpw5qu8rdqavcrjxsnajxxmfv49cqg49hsng239p
+creation_rules:
+  - path_regex: secrets/[^/]+.yaml$
+    key_groups:
+    - age:
+      - *dilly-t480
+      - *mbp

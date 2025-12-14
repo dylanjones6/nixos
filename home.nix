@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 {
   imports = [
     ./nvim.nix
@@ -6,8 +6,9 @@
   
   home.username = "dilly";
 
-  # home.homeDirectory = if pkgs.hostPlatform == "aarch64-darwin" then "/Users/dilly"
-  #   else "/home/dilly";
+  # i don't think i need this but who cares it's here now
+  xdg.configHome = if pkgs.stdenv.hostPlatform.isDarwin then "/Users/dilly/.config"
+    else "/home/dilly/.config";
 
   home.packages = with pkgs; [
     neofetch

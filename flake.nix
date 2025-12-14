@@ -77,13 +77,12 @@
       specialArgs = { inherit inputs; };
       modules = [
         ./darwin-configuration.nix
-        # ./configuration.nix
-        # ./hosts/server/default.nix
+        ./hosts/mbp/default.nix
         # ./hosts/server/hardware-configuration.nix
         # ./hosts/server/disk-config-server.nix
-        # ./sops.nix
+        ./sops.nix
 
-        # sops-nix.nixosModules.sops
+        sops-nix.darwinModules.sops
         # disko.nixosModules.default
 
         home-manager.darwinModules.home-manager

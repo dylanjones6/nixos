@@ -3,34 +3,21 @@
 {
   imports =
     [
-      ./hardware-configuration.nix
-	  ../../networkmanager.nix
-      ../../wm/gnome.nix
-      #../../wm/hyprland.nix
+  #     ./hardware-configuration.nix
+  #     ../../networkmanager.nix
+  #     ../../wm/gnome.nix
+  #     #../../wm/hyprland.nix
     ];
     
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  networking.hostName = "nixos-t480";
-  networking.hostId = "b7b78d22"; #pretty sure this isn't some big secret lol
-
-  #!TODO get this working, something to do with it working at build time?
-  #networking.hostId = "$(cat /run/secrets/hostId)";
-  #networking.hostId = config.sops.secrets."hostId".path;
-
-  time.timeZone = "America/Denver";
-  
   #!TODO
-  services.openvpn.servers = {
-    homeVPN = { config = '' config /home/dilly/Downloads/homeVPN.conf ''; };
-  };
+  # services.openvpn.servers = {
+  #   homeVPN = { config = '' config /home/dilly/Downloads/homeVPN.conf ''; };
+  # };
 
   programs.fish.enable = true;
 
   # runs fish by default unless in recovery mode since fish isn't POSIX compliant
-  programs.bash = {
+  programs.zsh = {
     interactiveShellInit = ''
       if [[ $(${pkgs.procps}/bin/ps --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]
       then
@@ -40,74 +27,39 @@
     '';
   };
 
-  xdg.mimeApps = {
-    enable = true;
-    defaultApplications = {
-      "text/html" = "librewolf";
-      "x-scheme-handler/http" = "librewolf";
-      "x-scheme-handler/https" = "librewolf";
-      "x-scheme-handler/about" = "librewolf";
-      "x-scheme-handler/unknown" = "librewolf";
-    };
-  };
+  # xdg.mimeApps = {
+  #   enable = true;
+  #   defaultApplications = {
+  #     "text/html" = "librewolf";
+  #     "x-scheme-handler/http" = "librewolf";
+  #     "x-scheme-handler/https" = "librewolf";
+  #     "x-scheme-handler/about" = "librewolf";
+  #     "x-scheme-handler/unknown" = "librewolf";
+  #   };
+  # };
 
-  programs.starship.enable = true;
+  #programs.starship.enable = true;
 
-  programs.neovim.defaultEditor = true;
   environment.variables.EDITOR = "nvim";
   # programs.neovim.configure = import ./init.lua;
 
-  services.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    # other shit goes here but i hand typed this so idc look at commented out configuration.nix
-  };
-
-  # Enable CUPS printing service
-  services.printing.enable = true;
-
-  services.printing.drivers = [
-    pkgs.brlaser
-    pkgs.brgenml1lpr
-    pkgs.brgenml1cupswrapper
-  ];
 
   # PACKAGES
   environment.systemPackages = with pkgs; [
-    firefox
     thunderbird
     librewolf
     #nerd-fonts.iosevka
-    wofi
-    waybar
-    eww
-    networkmanager_dmenu
-    hyprpaper
-    #gnome-font-viewer
-    font-manager
-    fontpreview
     localsend
-    nautilus
     zellij
     fishPlugins.done
-    fishPlugins.fzf-fish
+    #fishPlugins.fzf-fish
     fzf
     zathura
     gcc
   ];
 
-  virtualisation.docker.enable = true;
+  # virtualisation.docker.enable = true;
 
-  # programs.nushell = {
-  #   enable = true;
-  #   extraConfig = ''
-  #       $env.config.buffer_editor = "nvim"
-  #   '';
-  # };
 
   # programs.ssh.startAgent = true;
   services.openssh.enable = true;
@@ -152,7 +104,7 @@
   users.users."dilly".openssh.authorizedKeys.keys = [
     #/run/secrets/openssh/github-t480
     #config.sops.secrets."openssh/github-t480".path
-    "$(cat /run/secrets/openssh/github-t480)"
+    "$(cat /run/secrets-mbp/openssh/github-mpb)"
   ];
   # sops.secrets."openssh/github-t480" = {
   #   restartUnits = [ "sshd.service" ];
@@ -163,12 +115,12 @@
   #   config.sops.secrets."openssh/github-t480".path
   # ];
 
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true;
-    dedicatedServer.openFirewall = true;
-    localNetworkGameTransfers.openFirewall = true;
-  };
+  # programs.steam = {
+  #   enable = true;
+  #   remotePlay.openFirewall = true;
+  #   dedicatedServer.openFirewall = true;
+  #   localNetworkGameTransfers.openFirewall = true;
+  # };
 
   fonts.packages = with pkgs; [
     nerd-fonts.iosevka
@@ -176,8 +128,4 @@
     nerd-fonts.iosevka-term-slab
     nerd-fonts.comic-shanns-mono
   ];
-
-  networking.firewall.allowedTCPPorts = [ 53317 ];
-  networking.firewall.allowedUDPPorts = [ 53317 ];
-
 }

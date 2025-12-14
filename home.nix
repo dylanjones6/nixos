@@ -1,13 +1,15 @@
-{ config, lib, pkgs, nixvim, ... }:
-
+{ config, lib, pkgs, inputs, ... }:
 {
   imports = [
     ./nvim.nix
   ];
   
   home.username = "dilly";
-  home.homeDirectory = "/home/dilly";
-  
+
+  # i don't think i need this but who cares it's here now
+  xdg.configHome = if pkgs.stdenv.hostPlatform.isDarwin then "/Users/dilly/.config"
+    else "/home/dilly/.config";
+
   home.packages = with pkgs; [
     neofetch
     ripgrep
@@ -15,18 +17,18 @@
     nnn
     fzf
     fd
-	nerd-fonts.comic-shanns-mono
+    nerd-fonts.comic-shanns-mono
   ];
-  xdg.mimeApps = {
-    enable = true;
-    defaultApplications = {
-      "text/html" = "librewolf";
-      "x-scheme-handler/http" = "librewolf";
-      "x-scheme-handler/https" = "librewolf";
-      "x-scheme-handler/about" = "librewolf";
-      "x-scheme-handler/unknown" = "librewolf";
-    };
-  };
+  # xdg.mimeApps = {
+  #   enable = true;
+  #   defaultApplications = {
+  #     "text/html" = "librewolf";
+  #     "x-scheme-handler/http" = "librewolf";
+  #     "x-scheme-handler/https" = "librewolf";
+  #     "x-scheme-handler/about" = "librewolf";
+  #     "x-scheme-handler/unknown" = "librewolf";
+  #   };
+  # };
   
   programs.librewolf = {
     # enable = true;

@@ -80,9 +80,9 @@
         ./hosts/mbp/default.nix
         # ./hosts/server/hardware-configuration.nix
         # ./hosts/server/disk-config-server.nix
-        ./sops.nix
+        # ./sops.nix
 
-        sops-nix.darwinModules.sops
+        # sops-nix.darwinModules.sops
         # disko.nixosModules.default
 
         home-manager.darwinModules.home-manager

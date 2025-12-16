@@ -43,7 +43,7 @@
   environment.variables.EDITOR = "nvim";
   # programs.neovim.configure = import ./init.lua;
 
-
+  nixpkgs.config.allowUnfree = true;
   # PACKAGES
   environment.systemPackages = with pkgs; [
     thunderbird
@@ -56,6 +56,9 @@
     fzf
     zathura
     gcc
+    #docker
+    #xquartz #broken?
+    #darwin.xcode
   ];
 
   # virtualisation.docker.enable = true;

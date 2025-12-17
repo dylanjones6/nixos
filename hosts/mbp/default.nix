@@ -61,10 +61,6 @@
     #darwin.xcode
   ];
 
-  programs.fish.shellAliases = {
-    "nixup" = "sudo darwin-rebuild switch";
-  };
-
   security.pam.services.sudo_local.touchIdAuth = true;
 
   system.keyboard.enableKeyMapping = true;

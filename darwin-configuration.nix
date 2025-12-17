@@ -14,6 +14,10 @@
     curl
   ];
 
+  programs.fish.shellAliases = {
+    "nixup" = "sudo darwin-rebuild switch";
+  };
+
   # Necessary for using flakes on this system.
   nix.settings.experimental-features = "nix-command flakes";
 
